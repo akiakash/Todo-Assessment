@@ -13,30 +13,30 @@ function UserHeader() {
   };
   return (
     <div>
-      <header class="bg-white">
+      <header className="bg-white">
         <nav
-          class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"
         >
-          <div class="flex lg:flex-1">
-            <a href="#" class="-m-1.5 p-1.5">
-              <span class="sr-only">Your Company</span>
+          <div className="flex lg:flex-1">
+            <a href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Your Company</span>
               <img
-                class="h-8 w-auto"
+                className="h-8 w-auto"
                 src="/logo.png"
                 alt=""
                 className="w-[60px] h-[60px]"
               />
             </a>
           </div>
-          <div class="flex lg:hidden">
+          <div className="flex lg:hidden">
             <button
               type="button"
-              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             >
-              <span class="sr-only">Open main menu</span>
+              <span className="sr-only">Open main menu</span>
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
@@ -51,19 +51,19 @@ function UserHeader() {
               </svg>
             </button>
           </div>
-          <div class="hidden lg:flex lg:gap-x-12">
-            <div class="relative"></div>
+          <div className="hidden lg:flex lg:gap-x-12">
+            <div className="relative"></div>
             <Link
               to="/todo"
-              class="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-gray-900"
             >
               My Tasks
             </Link>
           </div>
-          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <div
-              href="#"
-              class="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+              href="/"
+              className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
               onClick={logout}
             >
               Log out <span aria-hidden="true">&rarr;</span>

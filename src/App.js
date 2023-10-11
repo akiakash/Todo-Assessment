@@ -14,6 +14,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<SignIn />} />
+
         <Route path="/signup" element={<SignUp />} />
         <Route path="/todo" element={<Todo />} />
         <Route path="/createteam" element={<TeamForm />} />
