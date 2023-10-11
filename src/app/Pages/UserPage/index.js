@@ -4,21 +4,32 @@ import axios from "axios";
 import Header from "../../Components/Header";
 
 function UserPage() {
-  const [task, setTask] = useState("");
   const [tasklist, setTasklist] = useState([]);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editableTask, setEditableTask] = useState(null);
-  const [userTask, setUserTask] = useState([]);
-
+  const [taskId, setTaskId] = useState([]);
   const userId = sessionStorage.getItem("userId");
+
   const getRequest = () => {
     axios
       .get(`http://localhost:9999/taskmanagement/tasks/${userId}`)
       .then((response) => {
-        console.log("Response data:", response.data); // Log the response data
-        setTasklist(response.data);
-        console.log(userId);
+        setTasklist(response.data.tasks);
+
+        setTaskId(response.data.task._id);
+        console.log("taskid", taskId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleTaskUpdate = (taskId, complete) => {
+    axios
+      .patch(`http://localhost:9999/taskmanagement/tasks/${taskId}`, {
+        complete: !complete,
+      })
+      .then((response) => {
+        getRequest(); // Refresh the task list after the update
+        console.log(response.data.complete);
       })
       .catch((err) => {
         console.log(err);
@@ -28,19 +39,6 @@ function UserPage() {
   useEffect(() => {
     getRequest();
   }, []);
-
-  //   function toggleTaskCompletion(_id, completed) {
-  //     axios
-  //       .patch(`http://localhost:9999/todomanagement/${_id}`, {
-  //         completed: !completed, // Toggle the completed value
-  //       })
-  //       .then((response) => {
-  //         getRequest(); // Refresh the task list after updating a task
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error Completing task: ", error);
-  //       });
-  //   }
 
   return (
     <div>
@@ -52,13 +50,31 @@ function UserPage() {
               <h4 className="font-semibold ml-3 text-lg">Akash's Tasks</h4>
             </div>
             <div>
-              {tasklist && tasklist.tasks ? (
-                tasklist.tasks.map((task) => (
-                  <div key={task._id} className="mb-4">
-                    <h5 className="font-semibold text-gray-800">
-                      Task Title: {task.title}
-                    </h5>
-                    <p>Description: {task.description}</p>
+              {tasklist.length > 0 ? (
+                tasklist.map((task) => (
+                  <div key={task._id} className="mb-4 flex flex-row gap-4">
+                    <div className="flex flex-row gap-4">
+                      <input
+                        type="checkbox"
+                        checked={task.complete}
+                        className="round-checkbox"
+                        onChange={() =>
+                          handleTaskUpdate(task._id, task.complete)
+                        }
+                      />
+
+                      <label
+                        className={`flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100 ${
+                          task.completed ? "completed" : ""
+                        }`}
+                        htmlFor={`task_${task._id}`}
+                      >
+                        <span className="font-semibold text-gray-800">
+                          No: {task.title}
+                        </span>
+                        <span>Description: {task.description}</span>
+                      </label>
+                    </div>
                   </div>
                 ))
               ) : (
