@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserHeader() {
+  const navigate = useNavigate();
+  const logout = () => {
+    // Clear session storage and token (adjust this based on your actual implementation)
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("token");
+
+    // Navigate to the "/signin" route
+    navigate("/");
+  };
   return (
     <div>
       <header class="bg-white">
@@ -52,12 +61,13 @@ function UserHeader() {
             </Link>
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link
+            <div
               href="#"
-              class="text-sm font-semibold leading-6 text-gray-900"
+              class="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+              onClick={logout}
             >
               Log out <span aria-hidden="true">&rarr;</span>
-            </Link>
+            </div>
           </div>
         </nav>
       </header>

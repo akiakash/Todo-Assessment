@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+  const logout = () => {
+    // Clear session storage and token (adjust this based on your actual implementation)
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("token");
+
+    // Navigate to the "/signin" route
+    navigate("/");
+  };
   return (
     <div>
       <header class="bg-white shadow-lg">
@@ -64,12 +74,12 @@ function Header() {
             </a> */}
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link
-              href="#"
+            <div
               class="text-sm font-semibold leading-6 text-gray-900"
+              onClick={logout}
             >
               Log out <span aria-hidden="true">&rarr;</span>
-            </Link>
+            </div>
           </div>
         </nav>
         {/* 

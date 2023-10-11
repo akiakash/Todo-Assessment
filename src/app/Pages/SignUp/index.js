@@ -40,14 +40,12 @@ function SignUp() {
       console.log(response.data); // Log the response for debugging
       navigate("/");
 
-      // Clear the form after successful signup (you can also redirect the user)
       setFormData({
         email: "",
         password: "",
         confirmPassword: "",
       });
 
-      // Clear any error message
       setErrorMessage("");
     } catch (error) {
       // Handle errors (e.g., show an error message)
@@ -59,7 +57,6 @@ function SignUp() {
     }
   };
 
-  // Function to handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
