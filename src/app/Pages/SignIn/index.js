@@ -6,43 +6,117 @@ import { useNavigate } from "react-router-dom";
 function SignIn() {
   const navigate = useNavigate();
   // State to hold the user's input
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   username: "",
+  //   password: "",
+  // });
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // Function to handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
+  //   try {
+  //     // Make a POST request to your signup API endpoint
+  //     const response = await axios.post(
+  //       "http://localhost:9999/authmanagement/signin",
+  //       formData
+  //     );
+
+  //     // Handle the response (e.g., show a success message)
+  //     console.log(response.data); // Log the response for debugging
+  //     navigate("/todo", { state: { isAuthenticated: true } });
+  //     // Clear the form after successful signup (you can also redirect the user)
+  //     setFormData({
+  //       email: "",
+  //       password: "",
+  //     });
+  //   } catch (error) {
+  //     // Handle errors (e.g., show an error message)
+  //     console.error("Error signing up:", error);
+  //   }
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // Make a POST request to your signin API endpoint
+  //     const response = await axios.post(
+  //       "http://localhost:9999/authmanagement/signin/",
+  //       formData
+  //     );
+
+  //     console.log("Response data:", response.data); // Log the response for debugging
+
+  //     // Check if the user is the admin
+  //     if (
+  //       formData.username === "akash@gmail.com" &&
+  //       formData.password === "akash"
+  //     ) {
+  //       console.log("User email:", formData.username);
+  //       // Redirect to /todo if it's the admin
+  //       navigate("/todo", { state: { isAuthenticated: true } });
+  //     } else {
+  //       // Handle the response data here for non-admin users
+  //       if (response.data.isAuthenticated) {
+  //         sessionStorage.setItem("userId", response.data.userId);
+  //         navigate("/userpage", { state: { isAuthenticated: true } });
+  //       } else {
+  //         alert("User name or Password is Incorrect");
+  //       }
+  //     }
+
+  //     // Clear the form after successful signin
+  //     setFormData({
+  //       username: "",
+  //       password: "",
+  //     });
+  //   } catch (error) {
+  //     // Handle errors
+  //     console.error("Error signing in:", error);
+  //     alert("User name or Password is Incorrect");
+  //   }
+  // };
+
+  // // Function to handle input changes
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
+
+  const handleLogin = async () => {
     try {
-      // Make a POST request to your signup API endpoint
       const response = await axios.post(
-        "http://localhost:9999/authmanagement/signin",
-        formData
+        "http://localhost:9999/authmanagement/signin/",
+        {
+          username: email,
+          password,
+        }
       );
 
-      // Handle the response (e.g., show a success message)
-      console.log(response.data); // Log the response for debugging
-      navigate("/todo", { state: { isAuthenticated: true } });
-      // Clear the form after successful signup (you can also redirect the user)
-      setFormData({
-        email: "",
-        password: "",
-      });
-    } catch (error) {
-      // Handle errors (e.g., show an error message)
-      console.error("Error signing up:", error);
-    }
-  };
+      if (response.status === 200) {
+        const data = response.data;
+        const { userId } = data;
 
-  // Function to handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+        // Check if the email is 'admin@gmail.com' and the password is 'Admin'
+        if (email === "akash@gmail.com" && password === "akash") {
+          navigate("/todo"); // Navigate to /todo for admin
+        } else {
+          sessionStorage.setItem("userId", response.data.userId);
+          navigate("/userpage"); // Navigate to /userpage for regular users
+        }
+      } else {
+        // Authentication failed
+        console.error("Authentication failed");
+      }
+    } catch (error) {
+      console.error("Server error", error);
+    }
   };
 
   return (
@@ -65,11 +139,7 @@ function SignIn() {
               <h1 class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-[#cd5c5c]">
                 Sign in to your account
               </h1>
-              <form
-                onSubmit={handleSubmit}
-                class="space-y-4 md:space-y-6"
-                action="#"
-              >
+              <form class="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     for="email"
@@ -78,14 +148,10 @@ function SignIn() {
                     Your email
                   </label>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class=" border border-[#cd5c5c] text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
-                    required=""
-                    value={formData.email} // Bind the value to the state
-                    onChange={handleChange} // Handle input changes
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -97,13 +163,9 @@ function SignIn() {
                   </label>
                   <input
                     type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    class=" border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
-                    value={formData.password} // Bind the value to the state
-                    onChange={handleChange} // Handle input changes
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div class="flex items-center justify-between">
@@ -132,6 +194,7 @@ function SignIn() {
                 </div>
                 <button
                   type="submit"
+                  onClick={handleLogin}
                   class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign in
