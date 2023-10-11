@@ -120,7 +120,7 @@ function Todo() {
         <div class="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
           <div class="max-w-full p-8 bg-white rounded-lg shadow-lg w-96">
             <div class="flex items-center mb-6">
-              <h4 class="font-semibold ml-3 text-lg">Akash's Tasks</h4>
+              <h4 class="font-semibold  text-lg">Admin's Tasks</h4>
             </div>
             <div>
               {tasklist.map((item) => (

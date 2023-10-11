@@ -57,11 +57,11 @@ function TaskAssignment({ selectedTeam }) {
     <div className="mt-4">
       {selectedTeam ? (
         <div>
-          <h2 className="text-2xl font-semibold text-blue-600 mb-2">
+          <h2 className="text-2xl font-semibold text-[#D7263D]  mb-2">
             Task Assignment
           </h2>
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">
+            <label className="block text-[#D7263D] text-sm font-semibold mb-2">
               Select Team Member to Assign Task:
             </label>
             <select
@@ -94,15 +94,16 @@ function TaskAssignment({ selectedTeam }) {
               value={taskDescription}
               onChange={(e) => setTaskDescription(e.target.value)}
             ></textarea>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-semibold mt-4 py-2 px-4 rounded"
-              onClick={handleAssignTask}
-            >
-              Assign Task
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="bg-[#D7263D]  text-white font-semibold mt-4 py-2 px-4 rounded"
+                onClick={handleAssignTask}
+              >
+                Assign Task
+              </button>
+            </div>
           </div>
           <div className="mt-4">
-            <h2 className="text-2xl font-semibold text-blue-600 mb-2">Tasks</h2>
             <ul className="list-disc list-inside">
               {tasks.map((task) => (
                 <li key={task._id}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import axios from "axios";
 import Header from "../../Components/Header";
+import UserHeader from "../../Components/UserHeader";
 
 function UserPage() {
   const [tasklist, setTasklist] = useState([]);
@@ -42,18 +43,18 @@ function UserPage() {
 
   return (
     <div>
-      <Header />
-      <div className="flex items-center justify-center w-screen h-screen font-medium">
+      <UserHeader />
+      <div className="flex justify-center w-screen h-screen font-medium ">
         <div className="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
-          <div className="max-w-full p-8 bg-white rounded-lg shadow-lg w-96">
+          <div className="max-w-full p-8 bg-white rounded-lg shadow-lg w-[600px]">
             <div className="flex items-center mb-6">
-              <h4 className="font-semibold ml-3 text-lg">Akash's Tasks</h4>
+              <h4 className="font-semibold text-lg">Tasks</h4>
             </div>
             <div>
               {tasklist.length > 0 ? (
                 tasklist.map((task) => (
                   <div key={task._id} className="mb-4 flex flex-row gap-4">
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row gap-4 items-center">
                       <input
                         type="checkbox"
                         checked={task.complete}
@@ -70,9 +71,11 @@ function UserPage() {
                         htmlFor={`task_${task._id}`}
                       >
                         <span className="font-semibold text-gray-800">
-                          No: {task.title}
+                          Title: {task.title}
                         </span>
-                        <span>Description: {task.description}</span>
+                        <span className="ml-4 font-semibold text-gray-800">
+                          Description: {task.description}
+                        </span>
                       </label>
                     </div>
                   </div>

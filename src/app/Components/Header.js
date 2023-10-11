@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div>
-      <header class="bg-white">
+      <header class="bg-white shadow-lg">
         <nav
           class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
           aria-label="Global"

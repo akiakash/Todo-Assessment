@@ -74,7 +74,7 @@ function SignUp() {
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
-            class="flex items-center mb-6 text-2xl font-semibold text-[#cd5c5c]"
+            class="flex items-center mb-6 text-2xl font-semibold text-[#D7263D]"
           >
             <img
               className="w-[70px] h-[70px] mr-2"
@@ -85,7 +85,7 @@ function SignUp() {
           </a>
           <div class="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0  ">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-[#cd5c5c]">
+              <h1 class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-[#D7263D]">
                 Create an account
               </h1>
               <form
@@ -96,7 +96,7 @@ function SignUp() {
                 <div>
                   <label
                     for="email"
-                    class="block mb-2 text-sm font-medium text-[#cd5c5c]"
+                    class="block mb-2 text-sm font-medium text-[#D7263D]"
                   >
                     Your email
                   </label>
@@ -114,7 +114,7 @@ function SignUp() {
                 <div>
                   <label
                     for="password"
-                    class="block mb-2 text-sm font-medium text-[#cd5c5c]"
+                    class="block mb-2 text-sm font-medium text-[#D7263D]"
                   >
                     Password
                   </label>
@@ -132,7 +132,7 @@ function SignUp() {
                 <div>
                   <label
                     for="confirmPassword"
-                    class="block mb-2 text-sm font-medium text-[#cd5c5c]"
+                    class="block mb-2 text-sm font-medium text-[#D7263D]"
                   >
                     Confirm password
                   </label>
@@ -152,10 +152,19 @@ function SignUp() {
                 )}
                 <button
                   type="submit"
-                  class="w-full text-white bg-[#cd5c5c] mt-[20px] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  class="w-full text-white bg-[#D7263D] mt-[20px] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Create an account
                 </button>
+                <p class="text-sm font-light text-[#D7263D]">
+                  Already have an account yet?{" "}
+                  <Link
+                    to="/sigin"
+                    class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Sign In
+                  </Link>
+                </p>
               </form>
             </div>
           </div>
