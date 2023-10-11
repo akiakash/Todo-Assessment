@@ -11,7 +11,9 @@ function UserPage() {
 
   const getRequest = () => {
     axios
-      .get(`http://localhost:9999/taskmanagement/tasks/${userId}`)
+      .get(
+        `https://vital-assessment-server-6rfy.vercel.app/taskmanagement/tasks/${userId}`
+      )
       .then((response) => {
         setTasklist(response.data.tasks);
 
@@ -25,9 +27,12 @@ function UserPage() {
 
   const handleTaskUpdate = (taskId, complete) => {
     axios
-      .patch(`http://localhost:9999/taskmanagement/tasks/${taskId}`, {
-        complete: !complete,
-      })
+      .patch(
+        `https://vital-assessment-server-6rfy.vercel.app/taskmanagement/tasks/${taskId}`,
+        {
+          complete: !complete,
+        }
+      )
       .then((response) => {
         getRequest(); // Refresh the task list after the update
         console.log(response.data.complete);

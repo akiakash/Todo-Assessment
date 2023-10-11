@@ -20,10 +20,6 @@ function App() {
         <Route path="/userpage" element={<UserPage />} />
       </Routes>
     </Router>
-    // <div>
-    //   <AssignTask />
-    //   <UserTasksList />
-    // </div>
   );
 }
 

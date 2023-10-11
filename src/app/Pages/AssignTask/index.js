@@ -11,7 +11,9 @@ function AssignTask() {
   useEffect(() => {
     // Fetch users from the backend
     axios
-      .get("http://localhost:9999/authmanagement/users/")
+      .get(
+        "https://vital-assessment-server-6rfy.vercel.app/authmanagement/users/"
+      )
       .then((response) => {
         setUsers(response.data);
       });
@@ -20,11 +22,14 @@ function AssignTask() {
   const handleTaskSubmit = () => {
     // Create a new task and assign it to the selected user
     axios
-      .post("http://localhost:9999/taskmanagement/assigntask", {
-        title: taskTitle,
-        description: taskDescription,
-        assignedTo: selectedUserId,
-      })
+      .post(
+        "https://vital-assessment-server-6rfy.vercel.app/taskmanagement/assigntask",
+        {
+          title: taskTitle,
+          description: taskDescription,
+          assignedTo: selectedUserId,
+        }
+      )
       .then((response) => {
         console.log(response.data.message);
         // Clear the input fields after creating the task

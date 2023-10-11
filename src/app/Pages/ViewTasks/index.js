@@ -8,13 +8,17 @@ function UserTasksList() {
   useEffect(() => {
     // Fetch all users
     axios
-      .get("http://localhost:9999/authmanagement/users/")
+      .get(
+        "https://vital-assessment-server-6rfy.vercel.app/authmanagement/users/"
+      )
       .then((userResponse) => {
         const users = userResponse.data;
 
         // Fetch tasks for each user
         const userTaskPromises = users.map((user) =>
-          axios.get(`http://localhost:9999/taskmanagement/tasks/${user._id}`)
+          axios.get(
+            `https://vital-assessment-server-6rfy.vercel.app/taskmanagement/tasks/${user._id}`
+          )
         );
 
         Promise.all(userTaskPromises)

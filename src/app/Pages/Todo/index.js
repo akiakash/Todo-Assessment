@@ -12,7 +12,7 @@ function Todo() {
 
   function addTask() {
     axios
-      .post("http://localhost:9999/todomanagement/", {
+      .post("https://vital-assessment-server-6rfy.vercel.app/todomanagement/", {
         task: task,
       })
       .then((res) => {
@@ -27,7 +27,7 @@ function Todo() {
 
   const getRequest = () => {
     axios
-      .get(`http://localhost:9999/todomanagement/`)
+      .get(`https://vital-assessment-server-6rfy.vercel.app/todomanagement/`)
       .then((res) => {
         setTasklist(res.data);
         console.log(res.data);
@@ -43,9 +43,12 @@ function Todo() {
 
   function deleteTask(_id) {
     alert("Are you sure you want to delete?");
-    fetch(`http://localhost:9999/todomanagement/${_id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://vital-assessment-server-6rfy.vercel.app/todomanagement/${_id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((response) => {
         response.json();
         alert("Task Successfully Deleted...!");
@@ -64,7 +67,9 @@ function Todo() {
   function openModal(_id) {
     // Fetch data based on the ID
     axios
-      .get(`http://localhost:9999/todomanagement/${_id}`)
+      .get(
+        `https://vital-assessment-server-6rfy.vercel.app/todomanagement/${_id}`
+      )
       .then((response) => {
         // Print the response data
         console.log("Response data for ID", _id, ":", response.data);
@@ -85,10 +90,13 @@ function Todo() {
   function updateTask() {
     if (editableTask) {
       axios
-        .patch(`http://localhost:9999/todomanagement/${editableTask._id}`, {
-          task: editableTask.task,
-          // Provide the task property
-        })
+        .patch(
+          `https://vital-assessment-server-6rfy.vercel.app/todomanagement/${editableTask._id}`,
+          {
+            task: editableTask.task,
+            // Provide the task property
+          }
+        )
         .then((response) => {
           alert("Task Successfully Updated...!");
           getRequest(); // Refresh the task list after updating a task
@@ -102,9 +110,12 @@ function Todo() {
 
   function toggleTaskCompletion(_id, completed) {
     axios
-      .patch(`http://localhost:9999/todomanagement/${_id}`, {
-        completed: !completed, // Toggle the completed value
-      })
+      .patch(
+        `https://vital-assessment-server-6rfy.vercel.app/todomanagement/${_id}`,
+        {
+          completed: !completed, // Toggle the completed value
+        }
+      )
       .then((response) => {
         getRequest(); // Refresh the task list after updating a task
       })

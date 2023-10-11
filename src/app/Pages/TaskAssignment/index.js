@@ -11,7 +11,9 @@ function TaskAssignment({ selectedTeam }) {
     if (selectedTeam) {
       // Fetch tasks for the selected team
       axios
-        .get(`http://localhost:9999/teammanagement/tasks/${selectedTeam._id}`)
+        .get(
+          `https://vital-assessment-server-6rfy.vercel.app/teammanagement/tasks/${selectedTeam._id}`
+        )
         .then((response) => {
           setTasks(response.data.tasks);
         })
@@ -24,11 +26,14 @@ function TaskAssignment({ selectedTeam }) {
   const handleAssignTask = () => {
     // Send a POST request to assign a task to the selected member
     axios
-      .post("http://localhost:9999/taskmanagement/assigntask", {
-        title: taskTitle,
-        description: taskDescription,
-        assignedTo: selectedMember,
-      })
+      .post(
+        "https://vital-assessment-server-6rfy.vercel.app/taskmanagement/assigntask",
+        {
+          title: taskTitle,
+          description: taskDescription,
+          assignedTo: selectedMember,
+        }
+      )
       .then((response) => {
         console.log(response.data.message);
         alert("Task assigned successfully");
@@ -38,7 +43,7 @@ function TaskAssignment({ selectedTeam }) {
         if (selectedTeam) {
           axios
             .get(
-              `http://localhost:9999/taskmanagement/tasks/${selectedTeam._id}`
+              `https://vital-assessment-server-6rfy.vercel.app/taskmanagement/tasks/${selectedTeam._id}`
             )
             .then((response) => {
               setTasks(response.data.tasks);

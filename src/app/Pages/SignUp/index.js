@@ -29,7 +29,7 @@ function SignUp() {
     try {
       // Make a POST request to your signup API endpoint
       const response = await axios.post(
-        "http://localhost:9999/authmanagement/signup",
+        "https://vital-assessment-server-6rfy.vercel.app/authmanagement/signup",
         {
           username: formData.email,
           password: formData.password,

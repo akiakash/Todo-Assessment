@@ -14,13 +14,17 @@ function TeamForm() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9999/authmanagement/users/")
+      .get(
+        "https://vital-assessment-server-6rfy.vercel.app/authmanagement/users/"
+      )
       .then((response) => {
         setUsers(response.data);
       });
 
     axios
-      .get("http://localhost:9999/teammanagement/viewteams")
+      .get(
+        "https://vital-assessment-server-6rfy.vercel.app/teammanagement/viewteams"
+      )
       .then((response) => {
         setTeams(response.data.teams);
       })
@@ -31,10 +35,13 @@ function TeamForm() {
 
   const handleCreateTeam = () => {
     axios
-      .post("http://localhost:9999/teammanagement/createteam", {
-        memberIds: selectedMembers,
-        teamName: teamName,
-      })
+      .post(
+        "https://vital-assessment-server-6rfy.vercel.app/teammanagement/createteam",
+        {
+          memberIds: selectedMembers,
+          teamName: teamName,
+        }
+      )
       .then((response) => {
         console.log(response.data.message);
         alert("Team created successfully");

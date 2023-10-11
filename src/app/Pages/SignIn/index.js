@@ -20,7 +20,7 @@ function SignIn() {
   //   try {
   //     // Make a POST request to your signup API endpoint
   //     const response = await axios.post(
-  //       "http://localhost:9999/authmanagement/signin",
+  //       "https://vital-assessment-server-6rfy.vercel.app/authmanagement/signin",
   //       formData
   //     );
 
@@ -44,7 +44,7 @@ function SignIn() {
   //   try {
   //     // Make a POST request to your signin API endpoint
   //     const response = await axios.post(
-  //       "http://localhost:9999/authmanagement/signin/",
+  //       "https://vital-assessment-server-6rfy.vercel.app/authmanagement/signin/",
   //       formData
   //     );
 
@@ -92,27 +92,21 @@ function SignIn() {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:9999/authmanagement/signin/",
+        "https://vital-assessment-server-6rfy.vercel.app/authmanagement/signin/",
         {
           username: email,
           password,
         }
       );
 
-      if (response.status === 200) {
-        const data = response.data;
-        const { userId } = data;
-
-        // Check if the email is 'admin@gmail.com' and the password is 'Admin'
-        if (email === "akash@gmail.com" && password === "akash") {
-          navigate("/todo"); // Navigate to /todo for admin
-        } else {
-          sessionStorage.setItem("userId", response.data.userId);
-          navigate("/userpage"); // Navigate to /userpage for regular users
-        }
+      // Check if the email is 'akash@gmail.com' and the password is 'akash'
+      if (email === "akash@gmail.com" && password === "akash") {
+        console.log("phase2");
+        navigate("/todo"); // Navigate to /todo for admin
       } else {
-        // Authentication failed
-        console.error("Authentication failed");
+        // Set the user ID to session storage
+        sessionStorage.setItem("userId", response.data.userId);
+        navigate("/userpage"); // Navigate to /userpage for regular users
       }
     } catch (error) {
       console.error("Server error", error);
