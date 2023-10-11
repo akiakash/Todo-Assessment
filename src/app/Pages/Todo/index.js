@@ -127,11 +127,11 @@ function Todo() {
   return (
     <div>
       <Header />
-      <div class="flex items-center justify-center w-screen h-screen font-medium">
-        <div class="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
-          <div class="max-w-full p-8 bg-white rounded-lg shadow-lg w-96">
-            <div class="flex items-center mb-6">
-              <h4 class="font-semibold  text-lg">Admin's Tasks</h4>
+      <div className="flex items-center justify-center w-screen h-screen font-medium">
+        <div className="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
+          <div className="max-w-full p-8 bg-white rounded-lg shadow-lg w-96">
+            <div className="flex items-center mb-6">
+              <h4 className="font-semibold  text-lg">Admin's Tasks</h4>
             </div>
             <div>
               {tasklist.map((item) => (
@@ -150,7 +150,7 @@ function Todo() {
                       className={`flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100 ${
                         item.completed ? "completed" : ""
                       }`}
-                      htmlFor={`task_${item._id}`}
+                      htmlhtmlFor={`task_${item._id}`}
                     >
                       <span className="ml-4 text-sm">{item.task}</span>
                     </label>
@@ -167,7 +167,7 @@ function Todo() {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6"
+                        className="w-6 h-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -186,7 +186,7 @@ function Todo() {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6"
+                        className="w-6 h-6"
                       >
                         <path
                           stroke-linecap="round"
@@ -199,10 +199,10 @@ function Todo() {
                 </div>
               ))}
             </div>
-            <button class="flex items-center w-full h-8 px-2 mt-2 text-sm font-medium rounded">
+            <button className="flex items-center w-full h-8 px-2 mt-2 text-sm font-medium rounded">
               <div onClick={addTask}>
                 <svg
-                  class="w-5 h-5 text-gray-400 fill-current"
+                  className="w-5 h-5 text-gray-400 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

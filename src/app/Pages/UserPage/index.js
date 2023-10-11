@@ -73,7 +73,7 @@ function UserPage() {
                         className={`flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100 ${
                           task.completed ? "completed" : ""
                         }`}
-                        htmlFor={`task_${task._id}`}
+                        htmlhtmlFor={`task_${task._id}`}
                       >
                         <span className="font-semibold text-gray-800">
                           Title: {task.title}
